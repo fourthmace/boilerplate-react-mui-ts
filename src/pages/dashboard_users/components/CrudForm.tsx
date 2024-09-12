@@ -66,7 +66,9 @@ const CrudForm = () => {
     }
   };
   useEffect(() => {
-    fetchDatauser(user_id ?? "");
+    if (user_id) {
+      fetchDatauser(user_id);
+    }
   }, [user_id]);
 
   // Hanle Submit
