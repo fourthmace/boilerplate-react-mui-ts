@@ -41,7 +41,7 @@ const CrudForm = () => {
 
   // Setup Form
   const methods = useForm<UserIForm>({
-    resolver: yupResolver(CrudUserSchema),
+    resolver: yupResolver(CrudUserSchema) as any,
     defaultValues: CrudUserDefaultValues,
   });
   const {
