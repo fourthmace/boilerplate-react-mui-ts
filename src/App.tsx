@@ -6,9 +6,11 @@ import Router from "@/router/index";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/theme/theme-provider";
 import { LayoutProvider } from "@/providers/LayoutProvider";
+import { AlertConfirmProvider } from "./providers/AlertConfirmProvider";
+// Components - global
+import { ProgressBar } from "./components";
 // CSS
 import "./App.css";
-import { AlertConfirmProvider } from "./providers/AlertConfirmProvider";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <LayoutProvider>
           <AlertConfirmProvider>
             <SnackbarProvider>
+              <ProgressBar />
               <Router />
             </SnackbarProvider>
           </AlertConfirmProvider>
