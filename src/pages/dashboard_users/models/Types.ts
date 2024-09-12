@@ -19,7 +19,7 @@ export interface PaginationUsersType {
 export interface UserIForm {
   user_id?: string;
   email: string;
-  user_level: UserLevelType | {};
+  user_level: UserLevelType;
   password?: string;
 }
 
