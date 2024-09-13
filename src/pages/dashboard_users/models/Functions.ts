@@ -29,8 +29,6 @@ export const GetUsers = async (
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return {
       pages: 0,
@@ -54,8 +52,6 @@ export const GetUser = async (user_id: string): Promise<UserType | null> => {
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return null;
   }
@@ -73,8 +69,6 @@ export const GetUserLevels = async (): Promise<UserLevelType[]> => {
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return [];
   }
@@ -104,8 +98,6 @@ export const CrudUser = async (payload: UserInput): Promise<Boolean> => {
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return false;
   }
@@ -124,8 +116,6 @@ export const DeleteUsers = async (userId: string): Promise<boolean> => {
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return false;
   }

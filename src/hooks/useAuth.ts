@@ -1,5 +1,3 @@
-// LIBRARIES
-import { enqueueSnackbar } from "notistack";
 // UTILS
 import axios from "@/utils/axios";
 // HOOKS
@@ -42,13 +40,9 @@ export const useAuth = () => {
         });
 
         return response.data.data as UserClaims;
-      } else {
-        enqueueSnackbar("login expired", { variant: "warning" });
       }
     }
 
-    delete axios.defaults.headers.common.Authorization;
-    removeItem("user");
     return null;
   };
 

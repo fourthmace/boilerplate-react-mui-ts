@@ -2,6 +2,7 @@
 import { SnackbarProvider } from "notistack";
 // routes
 import Router from "@/router/index";
+import { useNavigate } from "react-router";
 // Providers
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/theme/theme-provider";
@@ -11,8 +12,13 @@ import { AlertConfirmProvider } from "./providers/AlertConfirmProvider";
 import { ProgressBar } from "./components";
 // CSS
 import "./App.css";
+// Functions - global
+import globalRouter from "./utils/functions";
 
 function App() {
+  const navigate = useNavigate();
+  globalRouter.navigate = navigate;
+
   return (
     <ThemeProvider>
       <HelmetProvider>

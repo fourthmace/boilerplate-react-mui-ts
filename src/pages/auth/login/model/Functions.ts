@@ -19,8 +19,6 @@ export const Login = async (payload: LoginReq): Promise<TokenClaims | null> => {
   } catch (error: any) {
     if (error.response && error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
-    } else {
-      enqueueSnackbar("Terjadi kesalahan pada server", { variant: "error" });
     }
     return null;
   }
