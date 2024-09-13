@@ -1,7 +1,7 @@
-import { useFormContext, Controller } from 'react-hook-form';
+import { useFormContext, Controller } from "react-hook-form";
 // @mui
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import Autocomplete, { AutocompleteProps } from '@mui/material/Autocomplete';
+import TextField, { TextFieldProps } from "@mui/material/TextField";
+import Autocomplete, { AutocompleteProps } from "@mui/material/Autocomplete";
 
 // ----------------------------------------------------------------------
 
@@ -9,28 +9,28 @@ interface Props<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 > extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
   name: string;
   label?: string;
   placeholder?: string;
   helperText?: React.ReactNode;
-  textfieldParam?: TextFieldProps,
-  required?: boolean
+  textfieldParam?: TextFieldProps;
+  required?: boolean;
 }
 
 export type RHFAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined,
-> = Omit<Props<T, Multiple, DisableClearable, FreeSolo>, 'renderInput'>;
+  FreeSolo extends boolean | undefined
+> = Omit<Props<T, Multiple, DisableClearable, FreeSolo>, "renderInput">;
 
 export default function RHFAutocomplete<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined,
+  FreeSolo extends boolean | undefined
 >({
   name,
   label,
@@ -49,7 +49,12 @@ export default function RHFAutocomplete<
       render={({ field, fieldState: { error } }) => (
         <Autocomplete
           {...field}
-          onChange={(event, newValue) => setValue(name, newValue, { shouldValidate: true })}
+          onChange={(_, newValue) =>
+            setValue(name, newValue, {
+              shouldValidate: true,
+              shouldDirty: true,
+            })
+          }
           renderInput={(params) => (
             <TextField
               label={label}
