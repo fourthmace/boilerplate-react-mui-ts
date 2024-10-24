@@ -27,12 +27,20 @@ export const useAuth = () => {
 
   const getUser = async (): Promise<UserClaims | null> => {
     const dataToken = getItem("token");
+    const dataTokenJson = dataToken
+      ? (JSON.parse(dataToken ?? "") as TokenClaims)
+      : null;
 
-    if (dataToken) {
-      const dataTokenJson = JSON.parse(dataToken) as TokenClaims;
-
-      if (Math.floor(Date.now() / 1000) < dataTokenJson.expired) {
+    if (dataTokenJson == null) {
+      delete axios.defaults.headers.common.Authorization;
+      return null;
+    } else {
+      if (Math.floor(Date.now() / 1000) > dataTokenJson.expired) {
+        delete axios.defaults.headers.common.Authorization;
+        return null;
+      } else {
         axios.defaults.headers.common.Authorization = `Bearer ${dataTokenJson.token}`;
+
         const response = await axios.get("/user/profile", {
           headers: {
             "Content-Type": "application/json",
@@ -42,8 +50,6 @@ export const useAuth = () => {
         return response.data.data as UserClaims;
       }
     }
-
-    return null;
   };
 
   return { getUser, setLogin, setLogout };

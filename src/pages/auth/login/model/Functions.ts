@@ -17,7 +17,7 @@ export const Login = async (payload: LoginReq): Promise<TokenClaims | null> => {
     enqueueSnackbar("Login berhasil", { variant: "success" });
     return response.data.data as TokenClaims;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (error.response.status <= 500) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return null;

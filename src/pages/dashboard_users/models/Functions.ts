@@ -27,7 +27,11 @@ export const GetUsers = async (
 
     return response.data.data as PaginationUsersType;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return {
@@ -50,7 +54,11 @@ export const GetUser = async (user_id: string): Promise<UserType | null> => {
 
     return users.length > 0 ? users[0] : null;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return null;
@@ -67,7 +75,11 @@ export const GetUserLevels = async (): Promise<UserLevelType[]> => {
 
     return response.data.data as UserLevelType[];
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return [];
@@ -96,7 +108,11 @@ export const CrudUser = async (payload: UserInput): Promise<Boolean> => {
     );
     return true;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return false;
@@ -114,7 +130,11 @@ export const DeleteUsers = async (userId: string): Promise<boolean> => {
     enqueueSnackbar("User berhasil dihapus!", { variant: "success" });
     return true;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return false;

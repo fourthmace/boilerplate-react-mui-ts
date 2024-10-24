@@ -18,7 +18,11 @@ export const UpdateProfile = async (
     enqueueSnackbar("Update profile berhasil", { variant: "success" });
     return true;
   } catch (error: any) {
-    if (error.response && error.response.status <= 500) {
+    if (
+      error.response &&
+      error.response.status <= 500 &&
+      error.response.status != 401
+    ) {
       enqueueSnackbar(error.response.data.message, { variant: "warning" });
     }
     return false;
